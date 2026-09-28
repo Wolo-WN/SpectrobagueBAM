@@ -1,0 +1,96 @@
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: #f5f4ef;
+    color: #1a1a18;
+    margin: 0;
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+  }
+  .container { max-width: 760px; width: 100%; }
+  h1 { font-size: 20px; font-weight: 500; margin: 0 0 4px; }
+  p.subtitle { font-size: 14px; color: #6b6a63; margin: 0 0 1.5rem; }
+  h2.step { font-size: 15px; font-weight: 500; margin: 1.75rem 0 0.75rem; display: flex; align-items: center; gap: 8px; }
+  h2.step .num {
+    width: 22px; height: 22px; border-radius: 50%; background: #1a1a18; color: #fff;
+    font-size: 12px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+
+  #upload-zone {
+    border: 1.5px dashed #b4b2a9;
+    border-radius: 12px;
+    padding: 1.75rem;
+    text-align: center;
+    cursor: pointer;
+    background: #fff;
+  }
+  #upload-zone:hover { border-color: #888780; }
+  #upload-zone p { font-size: 14px; color: #6b6a63; margin: 8px 0 0; }
+
+  #status { font-size: 13px; color: #6b6a63; margin: 0.75rem 0; display: none; }
+
+  #spectro-wrap {
+    position: relative;
+    width: 100%;
+    display: none;
+    background: #1a1a18;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 0.5px solid #e1e0d9;
+  }
+  #spectro-canvas { width: 100%; height: 220px; display: block; cursor: crosshair; }
+  #selection-box {
+    position: absolute; border: 2px solid #f2a623; background: rgba(242, 166, 35, 0.15);
+    pointer-events: none; display: none;
+  }
+  #spectro-hint {
+    font-size: 12px; color: #999790; margin-top: 6px;
+  }
+
+  #ring-controls { display: none; margin-top: 0.5rem; }
+  .row { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-bottom: 12px; }
+  .row label { font-size: 13px; color: #6b6a63; min-width: 130px; }
+  select, input[type="number"] {
+    font-family: inherit; font-size: 13px; padding: 6px 10px; border-radius: 8px;
+    border: 0.5px solid #b4b2a9; background: #fff; color: #1a1a18;
+  }
+  input[type="range"] { width: 130px; }
+  .hint-small { font-size: 12px; color: #999790; }
+
+  #canvas-wrap {
+    position: relative; width: 100%; height: 420px; display: none;
+    background: #2a2a28; border-radius: 12px; overflow: hidden; margin-top: 1rem;
+    border: 0.5px solid #e1e0d9;
+  }
+  #three-canvas { width: 100%; height: 100%; display: block; cursor: grab; }
+  #hint3d {
+    position: absolute; bottom: 10px; left: 12px; font-size: 12px; color: #d3d1c7;
+    background: rgba(0,0,0,0.35); padding: 2px 8px; border-radius: 6px;
+  }
+
+  #timeline-wrap {
+    position: relative; width: 100%; display: none; margin-top: 2px;
+    background: #1a1a18; border-radius: 0 0 12px 12px; overflow: hidden;
+    border: 0.5px solid #e1e0d9; border-top: none;
+  }
+  #timeline-canvas { width: 100%; height: 64px; display: block; cursor: crosshair; }
+  #timeline-selection {
+    position: absolute; top: 0; bottom: 0; background: rgba(242, 166, 35, 0.2);
+    border-left: 2px solid #f2a623; border-right: 2px solid #f2a623;
+    pointer-events: none; display: none;
+  }
+  .lock-mask {
+    position: absolute; top: 0; bottom: 0; background: rgba(0,0,0,0.62);
+    pointer-events: none; display: none;
+  }
+
+  button {
+    font-family: inherit; font-size: 13px; padding: 9px 16px; border-radius: 8px;
+    border: 0.5px solid #b4b2a9; background: #fff; cursor: pointer; color: #1a1a18;
+  }
+  button:hover { background: #f1efe8; }
+  button:active { transform: scale(0.98); }
+  button:disabled { opacity: 0.4; cursor: not-allowed; }
+  button.primary { background: #1a1a18; color: #fff; border-color: #1a1a18; }
+  button.primary:hover { background: #333330; }

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Spectrogramme → Bague 3D</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div class="container">
+  <h2 class="step"><span class="num">1</span>Fichier audio</h2>
+  <div id="upload-zone">
+    <p>Cliquer pour choisir un fichier audio (mp3, wav...)</p>
+    <input type="file" id="file-input" accept="audio/*" style="display: none;" />
+  </div>
+  <div id="status"></div>
+
+  <div id="section-select" style="display: none;">
+    <h2 class="step"><span class="num">2</span>Sélectionner une zone</h2>
+    <div id="spectro-wrap">
+      <canvas id="spectro-canvas"></canvas>
+      <div id="selection-box"></div>
+      <div id="spectro-mask-left" class="lock-mask"></div>
+      <div id="spectro-mask-right" class="lock-mask"></div>
+    </div>
+    <div id="timeline-wrap">
+      <canvas id="timeline-canvas"></canvas>
+      <div id="timeline-selection"></div>
+      <div id="timeline-mask-left" class="lock-mask"></div>
+      <div id="timeline-mask-right" class="lock-mask"></div>
+    </div>
+    <div class="row" id="timecode-row" style="margin-top: 10px;">
+      <label>Début (mm:ss ou secondes)</label>
+      <input type="text" id="tc-start" placeholder="0:00" style="width: 90px;">
+      <label style="min-width: auto;">Fin</label>
+      <input type="text" id="tc-end" placeholder="0:05" style="width: 90px;">
+      <button id="tc-apply">Appliquer</button>
+      <button id="tc-reset">Réinitialiser</button>
+      <span class="hint-small" id="tc-duration"></span>
+    </div>
+    <div id="spectro-hint">Clique-glisse sur le spectrogramme <b>ou</b> directement sur la forme d'onde en dessous pour choisir la zone à graver sur la bague — ou tape un timecode précis ci-dessus. Une fois une zone choisie, le reste est grisé : tu peux affiner à l'intérieur, ou cliquer "Réinitialiser" pour tout reprendre.</div>
+  </div>
+
+  <div id="ring-controls">
+    <h2 class="step"><span class="num">3</span>Réglages de la bague</h2>
+    <div class="row">
+      <label for="ring-size">Pointure (France)</label>
+      <select id="ring-size"></select>
+      <span class="hint-small" id="ring-size-mm"></span>
+    </div>
+    <div class="row">
+      <label for="relief-height">Exagération du relief</label>
+      <input type="range" min="0.5" max="4" value="1.5" step="0.1" id="relief-height" />
+      <span class="hint-small" id="relief-height-out">1.5 mm</span>
+    </div>
+    <div class="row">
+      <label for="relief-smooth">Lissage du relief</label>
+      <input type="range" min="0" max="4" value="1" step="1" id="relief-smooth" />
+      <span class="hint-small" id="relief-smooth-out">léger</span>
+    </div>
+    <button class="primary" id="generate-btn">Générer la bague en 3D</button>
+  </div>
+
+  <div id="canvas-wrap">
+    <canvas id="three-canvas"></canvas>
+    <div id="hint3d">Glisser pour tourner · molette pour zoomer</div>
+  </div>
+
+  <div id="export-row" style="display: none; margin-top: 1rem;">
+    <button id="export-btn">Exporter en STL</button>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
